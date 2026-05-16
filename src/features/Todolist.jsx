@@ -12,16 +12,7 @@ function Todolist(props) {
 
   return (
     <div className="border border-5 border-secondary m-2 p-2">
-      <h1>Todolist</h1>
-      <button
-        onClick={() => {
-          props.abc(876);
-        }}
-      >
-        some button
-      </button>
-      <br />
-      <br />
+      <h1>{props.name} Todolist</h1>
       {/*  */}
       <input
         type="text"
