@@ -3,11 +3,11 @@ function Todo(props) {
   console.log("Todo Rendered ", props.t);
   return (
     <li className="border p-2 my-2 border-2 border-dark rounded">
-      <b className="mx-2">{props.t}</b>
+      <b className="mx-2">{props.t.title}</b>
       <button
         className="btn btn-danger me-2"
         onClick={() => {
-          props.deleteTodo(props.i);
+          props.deleteTodo(props.t.id);
         }}
       >
         Delete
