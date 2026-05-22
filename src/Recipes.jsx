@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
+import Bill from "./Bill";
 function Recipes() {
   const [recipes, setrecipes] = React.useState([]);
   React.useEffect(() => {
@@ -15,15 +16,16 @@ function Recipes() {
       <ul className="d-flex flex-wrap list-unstyled w-50">
         {recipes?.map((p) => {
           return (
-            <li className="w-25 p-3 d-flex flex-column justify-content-center align-items-center">
+            <li className="w-25 p-3 d-flex flex-column justify-content-between align-items-center">
               <img src={p.image} className="w-50" alt="" />
               <Link to={`/recipes/${p.id}`}>{p.name}</Link>
+              <button className="btn btn-sm btn-success">Add To Order</button>
             </li>
           );
         })}
       </ul>
       <div className="w-50">
-        <Outlet></Outlet>
+        <Bill></Bill>
       </div>
     </div>
   );
