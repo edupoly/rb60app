@@ -12,10 +12,11 @@ function Recipes() {
 
   return (
     <div className="d-flex justify-content-between">
-      <ul>
+      <ul className="d-flex flex-wrap list-unstyled w-50">
         {recipes?.map((p) => {
           return (
-            <li>
+            <li className="w-25 p-3 d-flex flex-column justify-content-center align-items-center">
+              <img src={p.image} className="w-50" alt="" />
               <Link to={`/recipes/${p.id}`}>{p.name}</Link>
             </li>
           );
