@@ -1,23 +1,23 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { addToBilling } from "./billingSlice";
+import { useGetAllProductsQuery } from "../../services/products";
 
 function Products() {
-  const [prods, setProducts] = React.useState([]);
+  // const [prods, setProducts] = React.useState([]);
   var dispatch = useDispatch();
-  React.useEffect(() => {
-    fetch("https://dummyjson.com/products")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts([...data.products]);
-      });
-  }, []);
+  var { isLoading, data } = useGetAllProductsQuery();
   function handleAddBilling(product) {
     dispatch(addToBilling(product));
   }
   return (
     <ul className="list-unstyled d-flex flex-wrap">
-      {prods?.map((p) => {
+      {isLoading && (
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      )}
+      {data?.products?.map((p) => {
         return (
           <li
             className="w-25 p-2 d-flex flex-column justify-content-between align-items-center"
