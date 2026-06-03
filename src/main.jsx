@@ -10,6 +10,7 @@ import Recipes from "./Recipes.jsx";
 import RecipeDetails from "./RecipeDetails.jsx";
 import Users from "./Users.jsx";
 import UserDetails from "./UserDetails.jsx";
+import Login from "./Login.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/users",
         element: <Users></Users>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
       },
       {
         path: "/userDetails",
