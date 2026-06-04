@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTodo, deleteTodo } from "./todoSlice";
+import { useAddTodoMutation, useGetUserTodosQuery } from "../../services/todos";
 
 function Todolist() {
-  var { todos } = useSelector((state) => state.todolistR);
+  var { user } = useSelector((state) => state.userR);
   var [ntd, setNtd] = useState("");
-  var dispatch = useDispatch();
-
+  var [addTodoFn] = useAddTodoMutation();
+  var { isLoading, data } = useGetUserTodosQuery(user.username);
   return (
     <div className="border border-5 border-primary m-2 p-2">
       <h1>Todolist</h1>
@@ -18,23 +19,17 @@ function Todolist() {
       />
       <button
         onClick={() => {
-          dispatch(addTodo(ntd));
+          addTodoFn({ title: ntd, username: user.username });
         }}
       >
         Add todo
       </button>
       <ul>
-        {todos.map((todo, i) => {
+        {data?.map((todo, i) => {
           return (
             <li key={i}>
-              {todo}
-              <button
-                onClick={() => {
-                  dispatch(deleteTodo(i));
-                }}
-              >
-                Delete
-              </button>
+              {todo.title}
+              <button onClick={() => {}}>Delete</button>
             </li>
           );
         })}

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-  todos: ["goto goa", "play cricket", "listen to music"],
+  todos: [],
 };
 var todoSlice = createSlice({
   name: "todolistslice",
