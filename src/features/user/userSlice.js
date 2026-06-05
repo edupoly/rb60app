@@ -12,8 +12,9 @@ var userSlice = createSlice({
     updateUser: (state, action) => {
       window.localStorage.setItem("token", action.payload.token);
       window.localStorage.setItem("username", action.payload.username);
-      state.user.username = action.payload.username;
-      state.user.token = action.payload.token;
+      // console.log("Updating user in slice", action.payload);
+      console.log("Updating user in slice", state, action);
+      state.user = { ...action.payload };
     },
     logout: (state) => {
       state.user = null;

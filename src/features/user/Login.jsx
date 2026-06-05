@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
   var dispatch = useDispatch();
+  var navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -29,6 +30,7 @@ function Login() {
       dispatch(
         updateUser({ username: res.data.username, token: res.data.token }),
       );
+      navigate("/todolist");
     });
 
     // fetch("http://localhost:3500/auth/login", {
