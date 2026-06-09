@@ -30,6 +30,7 @@ function Navbar() {
         {user?.username && (
           <>
             <Link to="/todolist">Todos</Link>
+            <Link to="/uploadform">UploadForm</Link>
             <Link to="/counter">Counter</Link>
             <button
               className="btn btn-danger btn-sm"

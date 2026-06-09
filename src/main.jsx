@@ -6,6 +6,7 @@ import Login from "./features/user/Login.jsx";
 import Todolist from "./features/todolist/Todolist.jsx";
 import Counter from "./features/counter/Counter.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Uploadform from "./features/fileupload/uploadform.jsx";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/counter",
         element: <Counter></Counter>,
+      },
+      {
+        path: "/uploadform",
+        element: <Uploadform></Uploadform>,
       },
       {
         path: "/todolist",
