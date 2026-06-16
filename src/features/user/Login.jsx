@@ -3,8 +3,10 @@ import { useLoginMutation } from "../../services/auth";
 import { useDispatch } from "react-redux";
 import { updateUser } from "./userSlice";
 import { useNavigate } from "react-router-dom";
-
+import { GoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 function Login() {
+  var [user, setUser] = useState(null);
   var dispatch = useDispatch();
   var navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -48,11 +50,42 @@ function Login() {
     //   });
     // Add your login API call here
   };
+  const handleLoginSuccess = async (credentialResponse) => {
+    try {
+      // Send the token code to your Node.js backend
+      const res = await axios.post("http://localhost:3500/api/auth/google", {
+        token: credentialResponse.credential,
+      });
 
+      // Save your app's custom JWT token to localStorage
+      localStorage.setItem("todo_token", res.data.token);
+      setUser(res.data.user);
+      console.log("Logged in successfully:", res.data.user);
+    } catch (error) {
+      console.error("Backend authentication failed:", error);
+    }
+  };
   return (
     <div className="container">
-      <div className="row justify-content-center min-vh-100 align-items-center">
+      <div className="row justify-content-center min-vh-100">
         <div className="col-md-5 col-lg-4">
+          {!user ? (
+            <GoogleLogin
+              onSuccess={handleLoginSuccess}
+              onError={() => console.log("Login Failed")}
+            />
+          ) : (
+            <div>
+              <h3>Welcome, {user.name}</h3>
+              <img
+                src={user.picture}
+                alt="profile"
+                style={{ borderRadius: "50%" }}
+              />
+              <p>Email: {user.email}</p>
+              {/* Render your Todo List component here */}
+            </div>
+          )}
           <div className="card shadow">
             <div className="card-body p-4">
               <b className="d-block text-center fs-3 mb-4">Login</b>
