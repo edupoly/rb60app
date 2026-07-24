@@ -4,6 +4,7 @@ import { logout, updateUser } from "../features/user/userSlice";
 import { useEffect } from "react";
 function Navbar() {
   var { user } = useSelector((state) => state.userR);
+  console.log(user);
   var dispatch = useDispatch();
   var navigate = useNavigate();
 
@@ -13,6 +14,8 @@ function Navbar() {
         updateUser({
           username: window.localStorage.getItem("username"),
           token: window.localStorage.getItem("token"),
+          email: window.localStorage.getItem("email"),
+          picture: window.localStorage.getItem("picture"),
         }),
       );
     }
@@ -25,7 +28,7 @@ function Navbar() {
         alt=""
         style={{ width: "90px" }}
       />
-      <ul className="d-flex list-unstyled w-50 justify-content-end gap-4 px-5 m-0">
+      <ul className="d-flex list-unstyled w-50 justify-content-end align-items-center gap-4 px-5 m-0">
         {!user?.username && <Link to="/login">Login</Link>}
         {user?.username && (
           <>
@@ -40,6 +43,11 @@ function Navbar() {
             >
               Logout
             </button>
+            <img
+              src={user?.picture}
+              className="rounded"
+              style={{ width: "50px" }}
+            ></img>
           </>
         )}
       </ul>

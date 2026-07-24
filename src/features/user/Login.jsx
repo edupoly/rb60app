@@ -3,10 +3,11 @@ import { useLoginMutation } from "../../services/auth";
 import { useDispatch } from "react-redux";
 import { updateUser } from "./userSlice";
 import { useNavigate } from "react-router-dom";
-
+import GloginBtn from "./GLoginBtn";
 function Login() {
   var dispatch = useDispatch();
   var navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -32,31 +33,16 @@ function Login() {
       );
       navigate("/todolist");
     });
-
-    // fetch("http://localhost:3500/auth/login", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(formData),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.msg === "success") {
-    //       window.localStorage.setItem("token", data.token);
-    //     }
-    //   });
-    // Add your login API call here
   };
 
   return (
     <div className="container">
-      <div className="row justify-content-center min-vh-100 align-items-center">
+      <div className="row justify-content-center min-vh-100 py-5">
         <div className="col-md-5 col-lg-4">
           <div className="card shadow">
             <div className="card-body p-4">
               <b className="d-block text-center fs-3 mb-4">Login</b>
-
+              <GloginBtn />
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="username" className="form-label">

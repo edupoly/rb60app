@@ -6,6 +6,7 @@ import Login from "./features/user/Login.jsx";
 import Todolist from "./features/todolist/Todolist.jsx";
 import Counter from "./features/counter/Counter.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,9 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <Provider store={store}>
-    <RouterProvider router={router} />
-  </Provider>,
+  <GoogleOAuthProvider clientId="733215085063-2fh9hojuqr37l9hn0fsajjrurlvbovb2.apps.googleusercontent.com">
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  </GoogleOAuthProvider>,
 );
